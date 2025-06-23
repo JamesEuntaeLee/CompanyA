@@ -1,0 +1,623 @@
+<div id="dashboard-content" style="display:block;">
+  <div class="dashboard-grid">
+    <!-- Performance Summary -->
+    <div class="card summary-card">
+      <h3>Performance Summary</h3>
+      <div class="summary-stats">
+        <div class="stat">
+          <span class="stat-value">+12.5%</span>
+          <span class="stat-label">YoY Growth</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">$284K</span>
+          <span class="stat-label">Quarterly Revenue</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">1,248</span>
+          <span class="stat-label">New Customers</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">92%</span>
+          <span class="stat-label">Target Achieved</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Revenue Trend Chart -->
+    <div class="card">
+      <h3>Revenue Trend</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="revenue-trend-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-info-circle"></i> 15% growth compared to last year</span>
+      </div>
+    </div>
+
+    <!-- Regional Performance Chart -->
+    <div class="card">
+      <h3>Regional Performance</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="regional-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-map-marker-alt"></i> North region leading with 35% share</span>
+      </div>
+    </div>
+
+    <!-- Top Products Table -->
+    <div class="card">
+      <h3>Top Selling Products</h3>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Units Sold</th>
+              <th>Revenue</th>
+              <th>Growth</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Product A</td>
+              <td>1,850</td>
+              <td>$98,500</td>
+              <td class="positive">+15%</td>
+            </tr>
+            <tr>
+              <td>Product B</td>
+              <td>1,420</td>
+              <td>$85,200</td>
+              <td class="positive">+8%</td>
+            </tr>
+            <tr>
+              <td>Product C</td>
+              <td>980</td>
+              <td>$58,800</td>
+              <td class="negative">-3%</td>
+            </tr>
+            <tr>
+              <td>Product D</td>
+              <td>750</td>
+              <td>$41,500</td>
+              <td class="positive">+22%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Product Mix Chart -->
+    <div class="card">
+      <h3>Product Mix</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="product-mix-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-box-open"></i> Product A accounts for 40% of sales</span>
+      </div>
+    </div>
+
+    <!-- Customer Segments Chart -->
+    <div class="card">
+      <h3>Customer Segments</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="customer-segments-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-users"></i> Retail segment is most active</span>
+      </div>
+    </div>
+
+    <!-- Sales Targets -->
+    <div class="card">
+      <h3>Sales Targets</h3>
+      <div class="targets-container">
+        <div class="target-item">
+          <div class="target-info">
+            <span class="target-label">Monthly Target</span>
+            <span class="target-value">$75,000</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 85%;"></div>
+            <span class="progress-text">85%</span>
+          </div>
+        </div>
+        <div class="target-item">
+          <div class="target-info">
+            <span class="target-label">Quarterly Target</span>
+            <span class="target-value">$225,000</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 72%;"></div>
+            <span class="progress-text">72%</span>
+          </div>
+        </div>
+        <div class="target-item">
+          <div class="target-info">
+            <span class="target-label">New Clients</span>
+            <span class="target-value">150</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 90%;"></div>
+            <span class="progress-text">90%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Forecast Chart -->
+    <div class="card">
+      <h3>Next Quarter Forecast</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="forecast-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-chart-line"></i> Expected 8% growth next quarter</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Inventory Tab Content -->
+<div id="inventory-content" style="display:none;">
+  <div class="dashboard-grid">
+    <!-- Inventory Summary -->
+    <div class="card summary-card">
+      <h3>Inventory Summary</h3>
+      <div class="summary-stats">
+        <div class="stat">
+          <span class="stat-value">1,248</span>
+          <span class="stat-label">Total Items</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">$284K</span>
+          <span class="stat-label">Total Value</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">42</span>
+          <span class="stat-label">Low Stock</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">15</span>
+          <span class="stat-label">Out of Stock</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inventory Status -->
+    <div class="card">
+      <h3>Inventory Status</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="inventory-status-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-cubes"></i> 15% of products need restocking</span>
+      </div>
+    </div>
+
+    <!-- Inventory Table -->
+    <div class="card wide-card">
+      <h3>Current Inventory</h3>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Product ID</th>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Current Stock</th>
+              <th>Reorder Level</th>
+              <th>Status</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PRD-1001</td>
+              <td>Product A</td>
+              <td>Electronics</td>
+              <td>450</td>
+              <td>100</td>
+              <td><span class="status-badge in-stock">In Stock</span></td>
+              <td>$24,750</td>
+            </tr>
+            <tr>
+              <td>PRD-1002</td>
+              <td>Product B</td>
+              <td>Furniture</td>
+              <td>320</td>
+              <td>150</td>
+              <td><span class="status-badge in-stock">In Stock</span></td>
+              <td>$19,200</td>
+            </tr>
+            <tr>
+              <td>PRD-1003</td>
+              <td>Product C</td>
+              <td>Office Supplies</td>
+              <td>85</td>
+              <td>100</td>
+              <td><span class="status-badge low-stock">Low Stock</span></td>
+              <td>$5,100</td>
+            </tr>
+            <tr>
+              <td>PRD-1004</td>
+              <td>Product D</td>
+              <td>Electronics</td>
+              <td>0</td>
+              <td>50</td>
+              <td><span class="status-badge out-of-stock">Out of Stock</span></td>
+              <td>$0</td>
+            </tr>
+            <tr>
+              <td>PRD-1005</td>
+              <td>Product E</td>
+              <td>Office Supplies</td>
+              <td>210</td>
+              <td>200</td>
+              <td><span class="status-badge in-stock">In Stock</span></td>
+              <td>$12,600</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Inventory Movement -->
+    <div class="card">
+      <h3>Inventory Movement</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="inventory-movement-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-exchange-alt"></i> 12% increase in movement this month</span>
+      </div>
+    </div>
+
+    <!-- Reorder Alerts -->
+    <div class="card">
+      <h3>Reorder Alerts</h3>
+      <div class="alerts-list">
+        <div class="alert-item critical">
+          <i class="fas fa-exclamation-triangle"></i>
+          <div class="alert-content">
+            <span class="alert-text">Product D is out of stock</span>
+            <span class="alert-detail">Last ordered 15 days ago</span>
+          </div>
+          <button class="alert-action">Reorder</button>
+        </div>
+        <div class="alert-item warning">
+          <i class="fas fa-exclamation-circle"></i>
+          <div class="alert-content">
+            <span class="alert-text">Product C stock is low</span>
+            <span class="alert-detail">Only 85 units remaining</span>
+          </div>
+          <button class="alert-action">Reorder</button>
+        </div>
+        <div class="alert-item warning">
+          <i class="fas fa-exclamation-circle"></i>
+          <div class="alert-content">
+            <span class="alert-text">Product F stock is low</span>
+            <span class="alert-detail">Only 92 units remaining</span>
+          </div>
+          <button class="alert-action">Reorder</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Clients Tab Content -->
+<div id="clients-content" style="display:none;">
+  <div class="dashboard-grid">
+    <!-- Clients Summary -->
+    <div class="card summary-card">
+      <h3>Clients Summary</h3>
+      <div class="summary-stats">
+        <div class="stat">
+          <span class="stat-value">1,248</span>
+          <span class="stat-label">Total Clients</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">$284K</span>
+          <span class="stat-label">Monthly Revenue</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">42</span>
+          <span class="stat-label">New This Month</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">92%</span>
+          <span class="stat-label">Retention Rate</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Client Types -->
+    <div class="card">
+      <h3>Client Types</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="client-types-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-user-tag"></i> 65% of clients are retail customers</span>
+      </div>
+    </div>
+
+    <!-- Clients Table -->
+    <div class="card wide-card">
+      <h3>Top Clients</h3>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Client ID</th>
+              <th>Client Name</th>
+              <th>Type</th>
+              <th>Location</th>
+              <th>Total Spend</th>
+              <th>Last Order</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CL-1001</td>
+              <td>ABC Corporation</td>
+              <td>Corporate</td>
+              <td>New York</td>
+              <td>$42,500</td>
+              <td>2 days ago</td>
+              <td><span class="status-badge active">Active</span></td>
+            </tr>
+            <tr>
+              <td>CL-1002</td>
+              <td>XYZ Retail</td>
+              <td>Retail</td>
+              <td>Chicago</td>
+              <td>$38,200</td>
+              <td>1 week ago</td>
+              <td><span class="status-badge active">Active</span></td>
+            </tr>
+            <tr>
+              <td>CL-1003</td>
+              <td>Global Suppliers</td>
+              <td>Wholesale</td>
+              <td>Houston</td>
+              <td>$35,750</td>
+              <td>3 days ago</td>
+              <td><span class="status-badge active">Active</span></td>
+            </tr>
+            <tr>
+              <td>CL-1004</td>
+              <td>City Government</td>
+              <td>Government</td>
+              <td>Los Angeles</td>
+              <td>$28,900</td>
+              <td>2 weeks ago</td>
+              <td><span class="status-badge active">Active</span></td>
+            </tr>
+            <tr>
+              <td>CL-1005</td>
+              <td>Best Buy Stores</td>
+              <td>Retail</td>
+              <td>Miami</td>
+              <td>$25,300</td>
+              <td>5 days ago</td>
+              <td><span class="status-badge active">Active</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Client Acquisition -->
+    <div class="card">
+      <h3>Client Acquisition</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="client-acquisition-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-chart-line"></i> 15% increase in new clients this quarter</span>
+      </div>
+    </div>
+
+    <!-- Recent Client Activity -->
+    <div class="card">
+      <h3>Recent Client Activity</h3>
+      <div class="activities-list">
+        <div class="activity-item">
+          <div class="activity-icon success">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <div class="activity-content">
+            <span class="activity-text">New order from ABC Corporation</span>
+            <span class="activity-time">2 hours ago</span>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon info">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <div class="activity-content">
+            <span class="activity-text">New client registered: Tech Solutions Inc</span>
+            <span class="activity-time">Yesterday</span>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon warning">
+            <i class="fas fa-exclamation-circle"></i>
+          </div>
+          <div class="activity-content">
+            <span class="activity-text">Payment overdue from XYZ Retail</span>
+            <span class="activity-time">3 days ago</span>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon success">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <div class="activity-content">
+            <span class="activity-text">Large order from Global Suppliers</span>
+            <span class="activity-time">1 week ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add this script at the end of the file -->
+<script>
+// Initialize inventory and clients charts when their tabs are shown
+document.addEventListener('DOMContentLoaded', function() {
+  // Inventory Data
+  const inventoryData = {
+    status: ['In Stock', 'Low Stock', 'Out of Stock'],
+    statusCounts: [850, 42, 15],
+    movementMonths: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    movementIn: [120, 135, 150, 165, 180, 200],
+    movementOut: [110, 125, 140, 155, 170, 190]
+  };
+
+  // Clients Data
+  const clientsData = {
+    types: ['Retail', 'Corporate', 'Wholesale', 'Government'],
+    typeCounts: [65, 15, 12, 8],
+    acquisitionMonths: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+    newClients: [25, 30, 35, 40, 45, 50]
+  };
+
+  // Initialize Inventory Status Chart
+  function initInventoryStatusChart() {
+    const ctx = document.getElementById('inventory-status-chart').getContext('2d');
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: inventoryData.status,
+        datasets: [{
+          data: inventoryData.statusCounts,
+          backgroundColor: ['#1cc88a', '#f6c23e', '#e74a3b'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'right'
+          }
+        }
+      }
+    });
+  }
+
+  // Initialize Inventory Movement Chart
+  function initInventoryMovementChart() {
+    const ctx = document.getElementById('inventory-movement-chart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: inventoryData.movementMonths,
+        datasets: [
+          {
+            label: 'Stock In',
+            data: inventoryData.movementIn,
+            borderColor: '#1cc88a',
+            backgroundColor: 'rgba(28, 200, 138, 0.1)',
+            fill: true,
+            tension: 0.3
+          },
+          {
+            label: 'Stock Out',
+            data: inventoryData.movementOut,
+            borderColor: '#4e73df',
+            backgroundColor: 'rgba(78, 115, 223, 0.1)',
+            fill: true,
+            tension: 0.3
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top'
+          }
+        }
+      }
+    });
+  }
+
+  // Initialize Client Types Chart
+  function initClientTypesChart() {
+    const ctx = document.getElementById('client-types-chart').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: clientsData.types,
+        datasets: [{
+          data: clientsData.typeCounts,
+          backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#f6c23e'],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'right'
+          }
+        }
+      }
+    });
+  }
+
+  // Initialize Client Acquisition Chart
+  function initClientAcquisitionChart() {
+    const ctx = document.getElementById('client-acquisition-chart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: clientsData.acquisitionMonths,
+        datasets: [{
+          label: 'New Clients',
+          data: clientsData.newClients,
+          backgroundColor: '#36b9cc',
+          borderColor: '#36b9cc',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
+    });
+  }
+
+  // Initialize charts when inventory tab is shown
+  document.querySelector('[data-section="inventory"]').addEventListener('click', function() {
+    setTimeout(() => {
+      initInventoryStatusChart();
+      initInventoryMovementChart();
+    }, 100);
+  });
+
+  // Initialize charts when clients tab is shown
+  document.querySelector('[data-section="clients"]').addEventListener('click', function() {
+    setTimeout(() => {
+      initClientTypesChart();
+      initClientAcquisitionChart();
+    }, 100);
+  });
+});
+</script>

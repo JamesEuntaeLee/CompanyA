@@ -1,0 +1,1270 @@
+/* Base Styles */
+:root {
+    --primary: #4361ee;
+    --primary-dark: #3a56b0;
+    --secondary: #3f37c9;
+    --success: #4cc9f0;
+    --warning: #f8961e;
+    --danger: #f94144;
+    --light: #f8f9fa;
+    --dark: #212529;
+    --gray: #6c757d;
+    --white: white;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    /* This will now be overridden by theme variables */
+    background-color: #f5f7fa;
+    color: var(--dark);
+}
+
+/* Layout */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+    /* Apply theme background */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.sidenav {
+    width: 250px;
+    background: var(--dark);
+    color: var(--white);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s;
+    /* Apply theme background */
+    background-color: var(--card-bg); /* Sidenav can be considered like a card background */
+    border-right: 1px solid var(--border-color);
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    /* Apply theme background */
+    background-color: var(--bg-color);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Side Navigation Styles */
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding: 0 20px 20px;
+    color: var(--white);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+}
+
+#user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid white;
+}
+
+/* Role Badges */
+.role-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.role-badge.role-administrator,
+.role-badge[data-role="Administrator"] {
+  background: #ef4444;
+  color: white;
+}
+
+.role-badge.role-manager,
+.role-badge[data-role="Manager"] {
+  background: #3b82f6;
+  color: white;
+}
+
+.role-badge.role-employee,
+.role-badge[data-role="Employee"] {
+  background: #10b981;
+  color: white;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 20px 0;
+    flex-grow: 1;
+}
+
+.nav-links li {
+    margin: 5px 0;
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.nav-links a i {
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+.nav-links a:hover, .nav-links li.active a {
+    background: rgba(255,255,255,0.1);
+    color: var(--white);
+}
+
+.logout-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    padding: 12px 20px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    background: rgba(255,255,255,0.1);
+    color: var(--white);
+}
+
+.logout-btn i {
+    margin-right: 10px;
+}
+
+/* Topbar Styles */
+.topbar {
+    background: white;
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    z-index: 10;
+    gap: 20px;
+    /* Apply theme background and border */
+    background-color: var(--card-bg) !important; /* Use card-bg for topbar consistency */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Keep original shadow for depth */
+    border-bottom: 1px solid var(--border-color);
+}
+
+.breadcrumbs {
+    font-weight: 500;
+    color: var(--dark);
+    flex-grow: 1; /* Pushes everything right */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--text-color); /* Ensure breadcrumbs match text color */
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Space between search and bell */
+}
+
+.search-bar {
+    position: relative;
+    width: 280px;
+    margin-right: 20px;
+    flex-shrink: 0;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 8px 15px 8px 35px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    transition: all 0.3s;
+    background-color: var(--bg-color); /* Ensure input background matches theme */
+    color: var(--text-color); /* Ensure input text matches theme */
+    border-color: var(--border-color); /* Ensure input border matches theme */
+}
+
+.search-bar input:focus {
+    border-color: var(--primary);
+}
+
+.search-bar i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray);
+}
+
+.notifications {
+    position: relative;
+    top: 2px;
+    right: 8px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.notifications .badge {
+    position: absolute;
+    top: -8px;
+    right: -11px;
+    background: var(--danger);
+    color: ghostwhite;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Content Area */
+.content-area {
+    background: ghostwhite;
+    padding: 25px;
+    flex-grow: 1;
+    /* Apply theme background */
+    background-color: var(--bg-color) !important;
+}
+
+/* Card Layout Improvements */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.settings-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.wide-card {
+    grid-column: span 2;
+}
+
+.settings-card {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color); /* Ensure text within card body matches theme */
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    /* Apply theme background, text, and border */
+    background-color: var(--card-bg) !important;
+    color: var(--text-color) !important;
+    border-color: var(--border-color) !important;
+}
+
+.form-control:focus {
+    border-color: #4361ee;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(67, 97, 238, 0.25);
+}
+
+.form-check {
+    position: relative;
+    display: block;
+    padding-left: 1.25rem;
+}
+
+.form-check-input {
+    position: absolute;
+    margin-top: 0.3rem;
+    margin-left: -1.25rem;
+}
+
+.form-check-label {
+    margin-bottom: 0;
+    color: var(--text-color); /* Ensure label text matches theme */
+}
+
+.form-actions {
+    margin-top: auto;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #4361ee;
+    border-color: #4361ee;
+}
+
+.btn-primary:hover {
+    background-color: #3a56d4;
+    border-color: #374fc7;
+}
+
+.btn-secondary {
+    color: #212529;
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+    /* Apply theme for secondary button if needed, or keep as is */
+    color: var(--text-color);
+    background-color: var(--border-color);
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .wide-card {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+/* Form Row Layout */
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px;
+}
+
+.form-row > .form-group {
+    padding-right: 5px;
+    padding-left: 5px;
+    flex: 1;
+    min-width: 0;
+}
+
+/* Card styling */
+.card {
+  background: ghostwhite;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  padding: 20px;
+  break-inside: avoid;
+  min-width: 0; /* Prevent flexbox overflow */
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    border-bottom-color: var(--border-color); /* Ensure header border matches theme */
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--dark);
+    color: var(--text-color); /* Ensure title matches text color */
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Employee Dashboard Specific */
+.performance-gauge {
+    height: 200px;
+    margin: 20px 0;
+}
+
+.alert {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: 500;
+    margin-top: 15px;
+    color: var(--text-color); /* Ensure alert text matches theme */
+}
+
+.alert.success {
+    background: rgba(76, 201, 240, 0.1);
+    color: #4cc9f0;
+    border-left: 3px solid #4cc9f0;
+}
+
+.alert.warning {
+    background: rgba(248, 150, 30, 0.1);
+    color: #f8961e;
+    border-left: 3px solid #f8961e;
+}
+
+/* Admin Dashboard Specific */
+.heatmap-container {
+    height: 400px;
+    margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidenav {
+        width: 100%;
+        height: auto;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.icon-dashboard::before { content: "📊"; }
+.icon-sales::before { content: "💰"; }
+.icon-inventory::before { content: "📦"; }
+.icon-clients::before { content: "👥"; }
+.icon-departments::before { content: "🏢"; }
+.icon-globe::before { content: "🌎"; }
+.icon-search::before { content: "🔍"; }
+.icon-bell::before { content: "🔔"; }
+
+/* KPI Cards */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.kpi {
+    background: rgba(67, 97, 238, 0.05);
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: var(--card-bg); /* Apply theme background */
+    border: 1px solid var(--border-color); /* Apply theme border */
+}
+
+.kpi-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: block;
+    color: var(--text-color); /* Ensure KPI value matches text color */
+}
+
+.kpi-label {
+    font-size: 0.8rem;
+    color: var(--gray);
+    display: block;
+    color: var(--text-color); /* Ensure KPI label matches text color */
+}
+
+.kpi-change {
+    font-size: 0.7rem;
+    font-weight: 500;
+    display: block;
+    margin-top: 3px;
+}
+
+.kpi-change.positive {
+    color: var(--success);
+}
+
+.kpi-change.negative {
+    color: var(--danger);
+}
+
+/* Tables */
+.client-table, .dept-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    color: var(--text-color); /* Ensure table text matches theme */
+}
+
+.client-table th, .dept-table th {
+    text-align: left;
+    padding: 10px;
+    background: #f8f9fa;
+    font-weight: 500;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--gray);
+    background-color: var(--bg-color); /* Table header should match background */
+    border-bottom: 1px solid var(--border-color); /* Table header border */
+    color: var(--text-color);
+}
+
+.client-table td, .dept-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+    border-bottom-color: var(--border-color); /* Table row border */
+}
+
+.priority-high {
+    color: var(--danger);
+    font-weight: 500;
+}
+
+.priority-medium {
+    color: var(--warning);
+}
+
+.priority-low {
+    color: var(--success);
+}
+
+.status-on-track {
+    color: var(--success);
+}
+
+.status-at-risk {
+    color: var(--warning);
+}
+
+.status-behind {
+    color: var(--danger);
+}
+
+/* Inventory List */
+.inventory-list {
+    list-style: none;
+}
+
+.inventory-list li {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    border-bottom-color: var(--border-color); /* Inventory list item border */
+}
+
+.inventory-list li.critical {
+    background: rgba(249, 65, 68, 0.05);
+    border-left: 3px solid var(--danger);
+}
+
+/* Buttons & Form Elements */
+.btn {
+    background: var(--primary);
+    color: ghostwhite;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: var(--primary-dark);
+}
+
+.btn-sm {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+}
+
+select {
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: ghostwhite;
+    font-size: 0.8rem;
+    /* Apply theme background, text, and border */
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+/* Loading States */
+.loading {
+    color: var(--gray);
+    font-style: italic;
+    padding: 20px;
+    text-align: center;
+    color: var(--text-color); /* Ensure loading text matches theme */
+}
+
+/* Responsive Tables */
+@media (max-width: 600px) {
+    .client-table, .dept-table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+
+/* Login-specific styles */
+    .auth-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url('../assets/ring.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+        padding: 20px;
+        /* Login page background should not be affected by theme for consistency with image */
+    }
+
+    .auth-card {
+        background: ghostwhite;
+        border-radius: 10px;
+        padding: 40px;
+        width: 100%;
+        max-width: 400px;
+        animation: fadeInUp 0.5s ease;
+        /* Revert to original solid background and border */
+        background: ghostwhite;
+        border: none;
+    }
+
+    .auth-title {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #2c3e50;
+        /* Revert to original color */
+        color: #2c3e50;
+    }
+
+    .auth-title h1 {
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .auth-title img {
+        height: 50px;
+        margin-bottom: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #555;
+        /* Revert to original color */
+        color: #555;
+    }
+
+    .form-control {
+        background: ghostwhite;
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: all 0.3s;
+        /* Revert to original background, text, and border */
+        background: ghostwhite;
+        color: #495057;
+        border: 1.5px solid ghostwhite;
+    }
+
+    .form-control:focus {
+        border-color: #4361ee;
+        box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+    }
+
+    .btn-login {
+        width: 100%;
+        padding: 12px;
+        background: #4361ee;
+        color: ghostwhite;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .btn-login:hover {
+        background: #3a56b0;
+    }
+
+    .auth-footer {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
+        /* Revert to original color */
+        color: #666;
+    }
+
+    .auth-footer a {
+        color: #4361ee;
+        text-decoration: none;
+    }
+
+    .error-message {
+        color: #f94144;
+        margin-top: 10px;
+        font-size: 14px;
+        display: none;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .error-message {
+        display: none;
+        margin-top: 15px;
+        padding: 10px 15px;
+        background-color: #ffebee;
+        border-radius: 4px;
+        color: #c62828;
+        font-size: 14px;
+        align-items: center;
+        /* Error messages generally have fixed colors for clear indication */
+    }
+
+    .error-message i {
+        margin-right: 8px;
+    }
+
+    .error-text {
+        flex: 1;
+    }
+
+/* Theme Styles */
+.theme-light {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --card-bg: #ffffff;
+  --border-color: #e0e0e0;
+}
+
+/* Dark Theme */
+.theme-dark {
+  --bg-color: #1a1a1a;
+  --text-color: #f0f0f0;
+  --card-bg: #2d2d2d;
+  --border-color: #444444;
+}
+
+/* Admin Dark Theme */
+.theme-admin-dark {
+  --bg-color: #0d1b2a;
+  --text-color: #e0e1dd;
+  --card-bg: #1b263b;
+  --border-color: #415a77;
+}
+
+/* Add !important to force override any conflicting styles */
+/* These rules are good, but we need to apply them to more elements */
+.theme-light,
+.theme-dark,
+.theme-admin-dark {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* Ensure cards and other elements respond to theme */
+.theme-light .card,
+.theme-dark .card,
+.theme-admin-dark .card {
+  background-color: var(--card-bg) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Apply theme variables to specific elements for comprehensive change */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.app-container {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.sidenav {
+    background-color: var(--card-bg); /* Sidenav will take on the card background */
+    border-right-color: var(--border-color);
+    color: var(--text-color); /* Ensure text in sidenav follows theme */
+}
+
+.sidenav .logo {
+    color: var(--text-color);
+    border-bottom-color: var(--border-color);
+}
+
+.sidenav .nav-links a {
+    color: var(--text-color);
+}
+
+.sidenav .nav-links a:hover, .sidenav .nav-links li.active a {
+    background: rgba(var(--text-color-rgb, 255,255,255), 0.1); /* Adjusted for dynamic hover */
+    color: var(--primary); /* Keep primary color for active/hover */
+}
+
+.sidenav .logout-btn {
+    color: var(--text-color);
+}
+
+.sidenav .logout-btn:hover {
+    background: rgba(var(--text-color-rgb, 255,255,255), 0.1); /* Adjusted for dynamic hover */
+    color: var(--primary); /* Keep primary color for hover */
+}
+
+.main-content {
+    background-color: var(--bg-color);
+}
+
+.topbar {
+    background-color: var(--card-bg);
+    border-bottom-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.topbar .breadcrumbs {
+    color: var(--text-color);
+}
+
+.search-bar input {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.search-bar i {
+    color: var(--text-color);
+}
+
+
+.content-area {
+    background-color: var(--bg-color);
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-color); /* Ensure text within card follows theme */
+}
+
+.card-header {
+    border-bottom-color: var(--border-color);
+}
+
+.card-title {
+    color: var(--text-color);
+}
+
+.form-control {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+.form-group label {
+    color: var(--text-color);
+}
+
+.client-table th, .dept-table th {
+    background-color: var(--card-bg); /* Table headers should align with card/background */
+    color: var(--text-color);
+    border-bottom-color: var(--border-color);
+}
+
+.client-table td, .dept-table td {
+    border-bottom-color: var(--border-color);
+}
+
+.kpi {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.kpi-value, .kpi-label {
+    color: var(--text-color);
+}
+
+.inventory-list li {
+    border-bottom-color: var(--border-color);
+}
+
+select {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+/* Toast Styles */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 24px;
+  border-radius: 4px;
+  color: ghostwhite;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast-success {
+  background-color: #28a745;
+}
+
+.toast-error {
+  background-color: #dc3545;
+}
+
+.toast-info {
+  background-color: #17a2b8;
+}
+
+/* Table Styles */
+.table-container {
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.data-table th, .data-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.data-table th {
+  background-color: #f8f9fa;
+  font-weight: 500;
+}
+
+.data-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.positive {
+  color: #1cc88a;
+  font-weight: 500;
+}
+
+.negative {
+  color: #e74a3b;
+  font-weight: 500;
+}
+
+/* Activity List Styles */
+.activities-list {
+  margin-top: 15px;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.activity-item:last-child {
+  border-bottom: none;
+}
+
+.activity-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.activity-icon.success {
+  background-color: rgba(28, 200, 138, 0.1);
+  color: #1cc88a;
+}
+
+.activity-icon.warning {
+  background-color: rgba(246, 194, 62, 0.1);
+  color: #f6c23e;
+}
+
+.activity-icon.info {
+  background-color: rgba(78, 115, 223, 0.1);
+  color: #4e73df;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-text {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+.activity-time {
+  font-size: 12px;
+  color: #858796;
+}
+
+/* Target Progress Styles */
+.targets-container {
+  margin-top: 15px;
+}
+
+.target-item {
+  margin-bottom: 20px;
+}
+
+.target-item:last-child {
+  margin-bottom: 0;
+}
+
+.target-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.target-label {
+  font-size: 14px;
+  color: #5a5c69;
+}
+
+.target-value {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.progress-bar {
+  height: 10px;
+  background-color: #eaecf4;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #4e73df;
+  border-radius: 5px;
+}
+
+.progress-text {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+  color: #fff;
+}
+
+/* Chart Footer Styles */
+.chart-footer {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+  font-size: 12px;
+  color: #858796;
+}
+
+.chart-note i {
+  margin-right: 5px;
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-badge.in-stock {
+  background-color: rgba(28, 200, 138, 0.1);
+  color: #1cc88a;
+}
+
+.status-badge.low-stock {
+  background-color: rgba(246, 194, 62, 0.1);
+  color: #f6c23e;
+}
+
+.status-badge.out-of-stock {
+  background-color: rgba(231, 74, 59, 0.1);
+  color: #e74a3b;
+}
+
+.status-badge.active {
+  background-color: rgba(28, 200, 138, 0.1);
+  color: #1cc88a;
+}
+
+/* Wide Card */
+.wide-card {
+  grid-column: span 2;
+}
+
+/* Alerts */
+.alerts-list {
+  margin-top: 15px;
+}
+
+.alert-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.alert-item.critical {
+  background-color: rgba(231, 74, 59, 0.1);
+  border-left: 4px solid #e74a3b;
+}
+
+.alert-item.warning {
+  background-color: rgba(246, 194, 62, 0.1);
+  border-left: 4px solid #f6c23e;
+}
+
+.alert-item i {
+  margin-right: 12px;
+  font-size: 18px;
+}
+
+.alert-item.critical i {
+  color: #e74a3b;
+}
+
+.alert-item.warning i {
+  color: #f6c23e;
+}
+
+.alert-content {
+  flex: 1;
+}
+
+.alert-text {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+
+.alert-detail {
+  font-size: 12px;
+  color: #858796;
+}
+
+.alert-action {
+  background: none;
+  border: 1px solid #d1d3e2;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.alert-action:hover {
+  background-color: #f8f9fc;
+}

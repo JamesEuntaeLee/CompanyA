@@ -1,0 +1,100 @@
+<div id="users-content" style="display:none;">
+    <div class="dashboard-grid">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">User Accounts</h3>
+                <button class="btn btn-sm">+ Add User</button>
+            </div>
+            <table class="user-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="user-accounts-list">
+                    <tr>
+                        <td colspan="4" class="loading">Loading user data...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="card">
+            <h3 class="card-title">Roles & Permissions</h3>
+            <div id="roles-permissions-table"></div>
+        </div>
+        
+        <div class="card">
+            <h3 class="card-title">Activity Log</h3>
+            <div id="user-activity-log"></div>
+        </div>
+    </div>
+</div>
+
+<div id="settings-content" style="display:none;">
+    <div class="dashboard-grid settings-grid">
+        <div class="card settings-card wide-card">
+            <div class="card-header">
+                <h3 class="card-title">System Configuration</h3>
+            </div>
+            <div class="card-body">
+                <form id="admin-system-form">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="sys-log-retention">Log Retention (days)</label>
+                            <input type="number" id="sys-log-retention" class="form-control" min="7" max="365" value="30">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="sys-backup-frequency">Backup Frequency</label>
+                            <select id="sys-backup-frequency" class="form-control">
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Weekly</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sys-maintenance-window">Maintenance Window</label>
+                        <select id="sys-maintenance-window" class="form-control">
+                            <option value="00:00-02:00">12am-2am</option>
+                            <option value="02:00-04:00">2am-4am</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="admin-reset-btn">Reset</button>
+                        <button type="submit" class="btn btn-primary">Save Configuration</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="card settings-card">
+            <div class="card-header">
+                <h3 class="card-title">Admin Preferences</h3>
+            </div>
+            <div class="card-body">
+                <form id="admin-prefs-form">
+                    <div class="form-group">
+                        <label for="admin-theme">Admin Theme</label>
+                        <select id="admin-theme" class="form-control">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                            <option value="admin-dark">Admin Dark</option>
+                        </select>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" id="admin-audit-alerts" class="form-check-input" checked>
+                        <label for="admin-audit-alerts" class="form-check-label">Audit Alerts</label>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="admin-prefs-reset">Reset Defaults</button>
+                        <button type="submit" class="btn btn-primary">Save Preferences</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
