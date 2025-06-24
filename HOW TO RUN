@@ -3,3 +3,12 @@ Have "Live Server" extension installed.
 Right-click index.html or login.html and click "Run with Live Server".
 Temp employee account email: stokcocbarubro2@gmail.com
 Password: anguschen
+
+NOTE:
+firebase-install is separate to the main project, but would be how the admin injects raw data.
+The raw spreadsheet is fed through Co-pilot, giving the json files mentioned in importData.js.
+After downloading the json files and verifying the names, execute the following in cmd prompt:
+cd firebase-import
+npm install firebase-admin
+node importData.js
+The data will then be in their assigned firestore collections.
