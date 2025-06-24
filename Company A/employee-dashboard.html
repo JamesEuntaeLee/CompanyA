@@ -1,0 +1,374 @@
+<div id="dashboard-content" style="display:block;">
+  <div class="dashboard-grid">
+    <div class="card summary-card">
+      <h3>Performance Summary</h3>
+      <div class="summary-stats">
+        <div class="stat">
+          <span class="stat-value">+12.5%</span>
+          <span class="stat-label">YoY Growth</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">$284K</span>
+          <span class="stat-label">Quarterly Revenue</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">1,248</span>
+          <span class="stat-label">New Customers</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">92%</span>
+          <span class="stat-label">Target Achieved</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Revenue Trend</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="revenue-trend-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-info-circle"></i> 15% growth compared to last year</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Regional Performance</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="regional-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-map-marker-alt"></i> Northern Territory leading with 100% share</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Top Selling Products</h3>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Units Sold</th>
+              <th>Revenue</th>
+              <th>Growth</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Product A</td>
+              <td>1,850</td>
+              <td>$98,500</td>
+              <td class="positive">+15%</td>
+            </tr>
+            <tr>
+              <td>Product B</td>
+              <td>1,420</td>
+              <td>$85,200</td>
+              <td class="positive">+8%</td>
+            </tr>
+            <tr>
+              <td>Product C</td>
+              <td>980</td>
+              <td>$58,800</td>
+              <td class="negative">-3%</td>
+            </tr>
+            <tr>
+              <td>Product D</td>
+              <td>750</td>
+              <td>$41,500</td>
+              <td class="positive">+22%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Product Mix</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="product-mix-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-box-open"></i> CPU accounts for 99% of sales</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Customer Segments</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="customer-segments-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-users"></i> Home segment is most active</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Sales Targets</h3>
+      <div class="targets-container">
+        <div class="target-item">
+          <div class="target-info">
+            <span class="target-label">Monthly Target</span>
+            <span class="target-value">$75,000</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 85%;"></div>
+            <span class="progress-text">85%</span>
+          </div>
+        </div>
+        <div class="target-item">
+          <div class="target-info">
+            <span class="target-label">Quarterly Target</span>
+            <span class="target-value">$225,000</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 72%;"></div>
+            <span class="progress-text">72%</span>
+          </div>
+        </div>
+        <div class="target-item">
+          <div class="target-info">
+            <span class="target-label">New Clients</span>
+            <span class="target-value">150</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 90%;"></div>
+            <span class="progress-text">90%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Next Quarter Forecast</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="forecast-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-chart-line"></i> Expected 8% growth next quarter</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="inventory-content" style="display:none;">
+  <div class="dashboard-special-layout">
+    <div class="card summary-card">
+      <h3>Inventory Summary</h3>
+      <div class="summary-stats">
+        <div class="stat">
+          <span class="stat-value">1,248</span>
+          <span class="stat-label">Total Items</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">$284K</span>
+          <span class="stat-label">Total Value</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">42</span>
+          <span class="stat-label">Low Stock</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">15</span>
+          <span class="stat-label">Out of Stock</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Inventory Status</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="inventory-status-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-cubes"></i> 15% of products need restocking</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Inventory Movement</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="inventory-movement-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-exchange-alt"></i> 12% increase in movement this month</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Reorder Alerts</h3>
+      <div class="alerts-list" id="reorder-alerts-list">
+        <div class="alert-item loading">Loading alerts...</div>
+      </div>
+    </div>
+
+    <div class="card massive-card">
+      <h3>Current Inventory</h3>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Product ID</th>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Current Stock</th>
+              <th>Reorder Level</th>
+              <th>Status</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody id="inventory-table-body">
+            <tr>
+              <td colspan="7" class="loading">Loading inventory data...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="clients-content" style="display:none;">
+  <div class="dashboard-special-layout">
+    <div class="card summary-card">
+      <h3>Clients Summary</h3>
+      <div class="summary-stats">
+        <div class="stat">
+          <span class="stat-value">1,248</span>
+          <span class="stat-label">Total Clients</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">$284K</span>
+          <span class="stat-label">Monthly Revenue</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">42</span>
+          <span class="stat-label">New This Month</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">92%</span>
+          <span class="stat-label">Retention Rate</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Client Types</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="client-types-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-user-tag"></i> 65% of clients are retail customers</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Client Acquisition</h3>
+      <div class="chart-container" style="height: 250px;">
+        <canvas id="client-acquisition-chart"></canvas>
+      </div>
+      <div class="chart-footer">
+        <span class="chart-note"><i class="fas fa-chart-line"></i> 15% increase in new clients this quarter</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Recent Client Activity</h3>
+      <div class="activities-list" id="recent-client-activity-list">
+        <div class="alert-item loading">Loading activities...</div>
+      </div>
+    </div>
+
+    <div class="card massive-card">
+      <h3>Top Clients</h3>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Client ID</th>
+              <th>Client Name</th>
+              <th>Type</th>
+              <th>Location</th>
+              <th>Total Spend</th>
+              <th>Last Order</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="clients-table-body">
+            <tr>
+              <td colspan="7" class="loading">Loading clients data...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="settings-content" style="display:none;">
+    <div class="dashboard-grid settings-grid">
+        <div class="card settings-card">
+            <div class="card-header">
+                <h3 class="card-title">Change Password</h3>
+            </div>
+            <div class="card-body">
+                <form id="change-password-form">
+                    <div class="form-group">
+                        <label for="current-password">Current Password</label>
+                        <input type="password" id="current-password" class="form-control" required autocomplete="current-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">New Password</label>
+                        <input type="password" id="new-password" class="form-control" required autocomplete="new-password" pattern=".{6,}" title="Password must be at least 6 characters long.">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-new-password">Confirm New Password</label>
+                        <input type="password" id="confirm-new-password" class="form-control" required autocomplete="new-password">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="change-password-btn">Change Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card settings-card">
+            <div class="card-header">
+                <h3 class="card-title">Preferences</h3>
+            </div>
+            <div class="card-body">
+                <form id="prefs-form">
+                    <div class="form-group">
+                        <label for="e-theme">Dashboard Theme</label>
+                        <select id="e-theme" class="form-control">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary" id="prefs-reset">Reset</button>
+                        <button type="submit" class="btn btn-primary">Save Theme</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.querySelector('[data-section="inventory"]').addEventListener('click', function() {
+    setTimeout(() => {
+    }, 100);
+});
+
+document.querySelector('[data-section="clients"]').addEventListener('click', function() {
+    setTimeout(() => {
+    }, 100);
+});
+
+document.querySelector('[data-section="settings"]').addEventListener('click', function() {
+    setTimeout(() => {
+    }, 100);
+});
+</script>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>Login | Sales Analytics</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-title">
+                <img src="assets/bhalaj.jpg" alt="Company Logo">
+                <h1>Company A Dashboard</h1>
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                    <br>
+                    <br>
+                    <div class="password-toggle">
+                        <i class="fas fa-eye" id="toggle-password"></i>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn-login" id="login-button">
+                        <i class="fas fa-sign-in-alt"></i> Sign In
+                    </button>
+                    <div id="error-message" class="error-message">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span class="error-text"></span>
+                    </div>
+                </div>
+                
+                <div class="auth-footer">
+                    <p>Don't have an account? Forgot Password?</p>
+                    <p><a href="mailto:jameseuntaelee@gmail.com?subject=Dashboard Login Assistance Request&body=Dear Administrator,%0A%0AI am requesting assistance with my dashboard login. My email is: %0A%0A[Please describe your issue here.]%0A%0AThank you.">Contact Administrator</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+
+<script src="js/auth.js"></script>
+
+<script>
+  const loginAttempts = {};
+  const MAX_ATTEMPTS = 5;
+  const LOCKOUT_TIME = 5 * 60 * 1000; 
+
+  document.getElementById('toggle-password').addEventListener('click', function() {
+    const passwordField = document.getElementById('password');
+    const icon = this;
+    if (passwordField.type === 'password') {
+      passwordField.type = 'text';
+      icon.classList.replace('fa-eye', 'fa-eye-slash');
+    } else {
+      passwordField.type = 'password';
+      icon.classList.replace('fa-eye-slash', 'fa-eye');
+    }
+  });
+
+  document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const errorElement = document.getElementById('error-message');
+    const submitBtn = document.getElementById('login-button');
+    
+    errorElement.style.display = 'none';
+    
+    const attempt = loginAttempts[email];
+    if (attempt && attempt.count >= MAX_ATTEMPTS && 
+        Date.now() - attempt.lastAttempt < LOCKOUT_TIME) {
+      const timeLeft = Math.ceil((LOCKOUT_TIME - (Date.now() - attempt.lastAttempt)) / 60000);
+      showError(`Too many attempts. Try again in ${timeLeft} minute(s).`);
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
+
+    login(email, password)
+      .then(function(result) {
+        if (result.success) {
+          delete loginAttempts[email];
+          window.location.assign('index.html?t=' + Date.now());
+        } else {
+
+          loginAttempts[email] = loginAttempts[email] || { count: 0 };
+          loginAttempts[email].count++;
+          loginAttempts[email].lastAttempt = Date.now();
+          
+          let errorMsg = result.error;
+          if (loginAttempts[email].count >= MAX_ATTEMPTS) {
+            errorMsg = `Account temporarily locked. Try again in 5 minutes.`;
+          } else if (loginAttempts[email].count >= 3) {
+            errorMsg += ` (${MAX_ATTEMPTS - loginAttempts[email].count} attempts remaining)`;
+          }
+          
+          showError(errorMsg);
+        }
+      })
+      .catch(function(error) {
+        console.error("Login crashed:", error);
+        showError("System error - please try again");
+      })
+      .finally(function() {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+      });
+  });
+
+  function showError(message) {
+    const errorElement = document.getElementById('error-message');
+    errorElement.querySelector('.error-text').textContent = message;
+    errorElement.style.display = 'flex';
+  }
+
+  monitorAuthState(function(user) {
+    if (user.isAuthenticated) {
+      window.location.href = 'index.html?t=' + Date.now();
+    }
+  });
+</script>
+</body>
+</html>
